@@ -12,10 +12,11 @@ int main() {
 
     struct CustomDataType* value = (struct CustomDataType*)malloc(sizeof(struct CustomDataType));
 
-    char *byte_ptr = (char *)&value;
-    byte_ptr += 5; // move to the 6th byte (0-based index)
+    printf("%d\n", sizeof(*value)); // 2197152
 
-    printf("%d", sizeof(*value));
+    printf("%p\n", value);
+    printf("%p\n", &value);
+    printf("%p\n", &(*value));
 
     free(value);
 
