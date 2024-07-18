@@ -20,13 +20,17 @@ int main() {
 }
 
 lli hornerPolySolve(int n, int x, int a[]) {
-    lli solvedSum = 0LL;
-    for(int i=0;i<n;i++) {
-        if(i != 0)
-            solvedSum = x*solvedSum + a[i+1];
-        else
-            solvedSum = a[i]*x + a[i+1];
+    if(n == 1) {
+        return a[0];
+    } else if(n == 0) {
+        return 0;
+    } else {
+        lli solved_sum = a[0] * x + a[1];
+        int i = 2;
+        while(i < n) {
+            solved_sum = solved_sum * x + a[i++];
+        }
+        solved_sum = solved_sum * x + a[i];
+        return solved_sum;
     }
-
-    return solvedSum;
 }
