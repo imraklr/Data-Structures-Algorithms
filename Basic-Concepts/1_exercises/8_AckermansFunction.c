@@ -2,35 +2,23 @@
 
 #define lli long long int
 
-lli ackermanOne(int m, int n); // if m = 0
-lli ackermanTwo(int m, int n); // if n = 0
-lli ackermanThree(int m, int n); // otherwise
+lli ackerman(int m, int n);
 
 int main() {
 
-    lli ccVal = ackermanThree(1, 1);
+    lli ackVal = ackerman(3, 2);
 
-    printf("%lld\n", ccVal);
+    printf("%lld\n", ackVal);
 
     return 0;
 }
 
-lli ackermanOne(int m, int n) { return n+1; }
-lli ackermanTwo(int m, int n) {
-    if(m-1 == 0) {
-        return ackermanOne(m, n);
+lli ackerman(int m, int n) {
+    if(m == 0) {
+        return n+1;
     } else if(n == 0) {
-        return ackermanTwo(m - 1, 1);
+        return ackerman(m-1, 1);
     } else {
-        return ackermanThree(m, n);
-    }
-}
-lli ackermanThree(int m, int n) {
-    if(m-1 == 0) {
-        return ackermanOne(m-1, (n-1) == 0 ? ackermanTwo(m, n) : ackermanThree(m-1, n));
-    } else if(m == 0) {
-        return ackermanOne(m, n);
-    } else {
-        return ackermanThree(m-1, (n-1) == 0 ? ackermanTwo(m, n) : ackermanThree(m-1, n));
+        return ackerman(m-1, ackerman(m, n-1));
     }
 }
